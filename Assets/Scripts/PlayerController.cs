@@ -21,10 +21,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     bool logEvents = false;
 
-    InputAction move;
+    InputAction forward;
+    InputAction rotate;
+    
     InputAction look;
     InputAction fire;
     InputAction jump;
+
+
 
     Rigidbody rb;
 
@@ -42,11 +46,15 @@ public class PlayerController : MonoBehaviour
         var inputActionsMap = playerInput.actions.FindActionMap("Player");
 
         //Note in order for this code to work the PlayerInput has to be set to C# Events
-        move = inputActionsMap.FindAction("Move");
-        move.performed += OnMoveEvent;
+        forward = inputActionsMap.FindAction("Forward");
+        forward.performed += OnForwardEvent;
 
-        look = inputActionsMap.FindAction("Look");
-        look.performed += OnLookEvent;
+        rotate = inputActionsMap.FindAction("Rotate");
+        rotate.performed += OnRotateEvent;
+
+
+   //     look = inputActionsMap.FindAction("Look");
+     //   look.performed += OnLookEvent;
 
         fire = inputActionsMap.FindAction("Fire");
         fire.performed += OnFireEvent;
@@ -57,29 +65,11 @@ public class PlayerController : MonoBehaviour
         rb = player.GetComponent<Rigidbody>();
     }
 
-    private void OnMoveEvent(InputAction.CallbackContext obj)
+    private void OnForwardEvent(InputAction.CallbackContext obj)
     {
-        var input = obj.ReadValue<Vector2>();
+        var input = obj.ReadValue<float>();
 
-        if (input.x > 0)
-        {
-            rotatingClockwise = true;
-            rotatingAntiClockwise = false;
-        }
-
-        if (input.x < 0)
-        {
-            rotatingClockwise = false;
-            rotatingAntiClockwise = true;
-        }
-
-        if (input.x == 0)
-        {
-            rotatingClockwise = false;
-            rotatingAntiClockwise = false;
-        }
-
-        if (input.y > 0)
+        if (input > 0)
         {
             movingForwards = true;
         }
@@ -90,9 +80,39 @@ public class PlayerController : MonoBehaviour
 
         if (logEvents)
         {
-            Debug.Log($"OnMoveEvent: x={input.x}    y={input.y}");
+            Debug.Log($"OnForwardEvent: value={input}");
         }
     }
+
+    private void OnRotateEvent(InputAction.CallbackContext obj)
+    {
+        var input = obj.ReadValue<float>();
+
+        if (input > 0)
+        {
+            rotatingClockwise = true;
+            rotatingAntiClockwise = false;
+        }
+
+        if (input < 0)
+        {
+            rotatingClockwise = false;
+            rotatingAntiClockwise = true;
+        }
+
+        if (input == 0)
+        {
+            rotatingClockwise = false;
+            rotatingAntiClockwise = false;
+        }
+
+        if (logEvents)
+        {
+            Debug.Log($"OnRotateEvent: valuex={input}");
+        }
+    }
+
+
 
     private void OnLookEvent(InputAction.CallbackContext obj)
     {
