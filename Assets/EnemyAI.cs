@@ -9,6 +9,13 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     Transform target;
 
+    Transform root;
+
+    private void Awake()
+    {
+        root = GetComponentInParent<Transform>();
+    }
+
 
     // Update is called once per frame
     void Update()
