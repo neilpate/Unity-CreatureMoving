@@ -830,6 +830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Head: {fileID: 154624310}
+  Exclamations: {fileID: 3729526240436619508}
   UnthreatenedColour: {r: 0.077782035, g: 1, b: 0, a: 1}
   ThreatenedColour: {r: 1, g: 0, b: 0.12047005, a: 1}
 --- !u!65 &1883110848
@@ -1195,6 +1196,11 @@ Rigidbody:
 --- !u!4 &3729526240436619507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5165188547798469130, guid: fcf7618bb894e1841917fdffde08fd5b, type: 3}
+  m_PrefabInstance: {fileID: 3729526240436619503}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3729526240436619508 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2407280691481623145, guid: fcf7618bb894e1841917fdffde08fd5b, type: 3}
   m_PrefabInstance: {fileID: 3729526240436619503}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3764604571265062529

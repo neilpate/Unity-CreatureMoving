@@ -8,6 +8,9 @@ public class ThreatAssesment : MonoBehaviour
     GameObject Head;
 
     [SerializeField]
+    GameObject Exclamations;
+
+    [SerializeField]
     Color UnthreatenedColour;
 
     [SerializeField]
@@ -24,7 +27,7 @@ public class ThreatAssesment : MonoBehaviour
         headMaterial = Head.GetComponent<Renderer>().material;
 
         //var comps = Head.GetComponents
-    
+
         if (!headMaterial)
         {
             Debug.Log("Head material not found.");
@@ -49,6 +52,11 @@ public class ThreatAssesment : MonoBehaviour
             {
                 headMaterial.color = UnthreatenedColour;
             }
+        }
+
+        if (Exclamations)
+        {
+            Exclamations.SetActive(threatened);
         }
     }
 
